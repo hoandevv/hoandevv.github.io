@@ -1,0 +1,21 @@
+title: My Portfolio
+description: Personal portfolio website
+
+exclude:
+  - node_modules
+  - portfolio/node_modules
+  - portfolio/dist
+  - portfolio/src
+  - portfolio/vite.config.js
+  - portfolio/eslint.config.js
+  - portfolio/package.json
+  - portfolio/package-lock.json
+  - "portfolio/node_modules/**/*"
+  - package.json
+  - package-lock.json
+  - yarn.lock
+  - .git
+  - .github
+
+include:
+  - .well-known

@@ -30,7 +30,7 @@ const TechStack = () => {
         <div className="h-px bg-navy-lighter flex-1 ml-6" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-4">
+      <div className="grid grid-cols-1 gap-6 px-4">
         {techCategories.map((category, index) => (
           <div 
             key={index} 
