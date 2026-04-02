@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0a192f;
+  --color-navy-light: #112240;
+  --color-navy-lighter: #233554;
+  --color-slate: #8892b0;
+  --color-slate-light: #a8b2d1;
+  --color-slate-lighter: #ccd6f6;
+  --color-white: #e6f1ff;
+  --color-cyan: #64ffda;
+  
+  --font-sans: 'Calibre', 'Inter', system-ui, sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-navy);
+  color: var(--color-slate);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  font-size: 17px;
+}
+
+::selection {
+  background-color: rgba(100, 255, 218, 0.3);
+  color: var(--color-cyan);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-navy);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-navy-lighter);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-slate);
+}
+
+.bg-dots {
+  background-image: radial-gradient(var(--color-navy-lighter) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.link-hover {
+  position: relative;
+  color: var(--color-cyan);
+  text-decoration: none;
+}
+
+.link-hover::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-cyan);
+  transition: width 0.3s ease;
+}
+
+.link-hover:hover::after {
+  width: 100%;
+}
+
+.btn-primary {
+  border: 1px solid var(--color-cyan);
+  color: var(--color-cyan);
+  padding: 1.25rem 1.75rem;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  background: transparent;
+}
+
+.btn-primary:hover {
+  background: rgba(100, 255, 218, 0.1);
+  transform: translateY(-3px);
+}
+
+.heading-number {
+  font-family: var(--font-mono);
+  color: var(--color-cyan);
+  margin-right: 12px;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-slate-lighter) 0%, var(--color-white) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
