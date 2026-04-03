@@ -14,56 +14,77 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { href: '#about', label: '01.', text: 'About' },
-    { href: '#experience', label: '02.', text: 'Experience' },
-    { href: '#work', label: '03.', text: 'Work' },
-    { href: '#contact', label: '04.', text: 'Contact' },
+    { href: '#about',    label: '01.', text: 'About' },
+    { href: '#education', label: '02.', text: 'Education' },
+    { href: '#tech',     label: '03.', text: 'Tech' },
+    { href: '#work',     label: '04.', text: 'Projects' },
+    { href: '#github',   label: '05.', text: 'GitHub' },
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5 flex items-center justify-between transition-all duration-300 ${
-      isScrolled ? 'bg-navy/90 backdrop-blur-md shadow-[0_10px_30px_-10px_rgba(2,12,27,0.7)]' : ''
+    <nav className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-4 flex items-center justify-between transition-all duration-300 ${
+      isScrolled
+        ? 'bg-navy/90 backdrop-blur-md shadow-[0_10px_30px_-10px_rgba(2,12,27,0.7)] border-b border-navy-lighter/40'
+        : ''
     }`}>
-      <a href="#" className="text-2xl font-bold text-slate-lighter hover:text-white transition-colors">
-        DH
+      {/* Logo */}
+      <a href="#" className="group flex items-center gap-2 text-slate-lighter hover:text-cyan transition-colors">
+        <span className="font-mono text-cyan text-lg font-bold">&lt;</span>
+        <span className="text-lg font-bold tracking-wide">DH</span>
+        <span className="font-mono text-cyan text-lg font-bold">/&gt;</span>
       </a>
-      
-      <div className="hidden md:flex items-center gap-8">
+
+      {/* Desktop nav */}
+      <div className="hidden md:flex items-center gap-6">
         {navLinks.map((link) => (
           <a
             key={link.href}
             href={link.href}
-            className="text-sm font-medium text-slate hover:text-cyan transition-colors link-hover"
+            className="text-sm font-medium text-slate hover:text-cyan transition-colors duration-200 group"
           >
-            <span className="text-cyan font-mono mr-1">{link.label}</span>
+            <span className="text-cyan font-mono text-xs mr-1 opacity-70 group-hover:opacity-100">{link.label}</span>
             {link.text}
           </a>
         ))}
-        
+
+        <a
+          href="https://github.com/hoandevv"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-slate hover:text-cyan transition-colors ml-2"
+          aria-label="GitHub"
+        >
+          <FaGithub size={20} />
+        </a>
+
         <a
           href="mailto:hoandev208@gmail.com"
-          className="btn-primary"
+          className="btn-primary text-xs px-5 py-2.5 ml-2"
         >
-          Resume
+          Contact
         </a>
       </div>
 
+      {/* Mobile hamburger */}
       <button
-        className="md:hidden text-slate-light hover:text-cyan"
+        className="md:hidden text-slate-light hover:text-cyan transition-colors"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        aria-label="Toggle menu"
       >
-        {isMobileMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+        {isMobileMenuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
       </button>
 
+      {/* Mobile menu */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 bg-navy/95 backdrop-blur-xl z-40 md:hidden flex flex-col items-center justify-center">
+        <div className="fixed inset-0 bg-navy/97 backdrop-blur-xl z-40 md:hidden flex flex-col items-center justify-center">
           <button
-            className="absolute top-5 right-6 text-slate-light hover:text-cyan"
+            className="absolute top-5 right-6 text-slate-light hover:text-cyan transition-colors"
             onClick={() => setIsMobileMenuOpen(false)}
+            aria-label="Close menu"
           >
             <FaTimes size={24} />
           </button>
-          
+
           <div className="flex flex-col items-center gap-8">
             {navLinks.map((link, index) => (
               <a
@@ -73,12 +94,12 @@ const Navbar = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <span className="text-cyan mr-2">{link.label}</span>
+                <span className="text-cyan mr-2 text-sm">{link.label}</span>
                 {link.text}
               </a>
             ))}
             <a href="mailto:hoandev208@gmail.com" className="btn-primary mt-4">
-              Resume
+              Contact
             </a>
           </div>
         </div>

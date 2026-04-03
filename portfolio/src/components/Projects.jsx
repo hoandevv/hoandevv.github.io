@@ -1,20 +1,51 @@
 import React from 'react';
-import { FaGithub, FaExternalLinkAlt, FaExternalLinkSquareAlt } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import {
+  SiOpenjdk, SiSpringboot, SiMysql, SiRedis, SiAngular, SiDocker,
+  SiPhp, SiBootstrap
+} from 'react-icons/si';
+
+const techIcons = {
+  'Java 17': SiOpenjdk,
+  'Spring Boot': SiSpringboot,
+  'MySQL': SiMysql,
+  'Redis': SiRedis,
+  'Docker': SiDocker,
+  'Angular': SiAngular,
+  'PHP': SiPhp,
+  'Bootstrap 5': SiBootstrap,
+};
 
 const projects = [
   {
     title: 'Movie Booking System',
-    description: 'A comprehensive full-stack movie ticket booking system. Features include real-time seat selection, integrated payment gateways, and a robust admin dashboard for managing screenings and theaters.',
-    tech: ['Java 17', 'Spring Boot', 'MySQL', 'Redis', 'Angular', 'Docker'],
+    description:
+      'A comprehensive full-stack movie ticket booking platform. Features real-time seat reservation with distributed locking, integrated payment flow, and an admin dashboard for managing screenings, theaters, and analytics.',
+    tech: ['Java 17', 'Spring Boot', 'MySQL', 'Redis', 'Docker', 'Angular'],
     link: 'https://github.com/hoandevv/Movie-Booking-System',
-    featured: true
+    highlights: [
+      'Built RESTful APIs with Spring Boot & Spring Security',
+      'Distributed locking with Redis for concurrent seat reservation',
+      'Efficient MySQL schema design with optimized indexing',
+      'Fully Dockerized for streamlined deployment',
+    ],
+    badge: 'Full-Stack',
+    badgeColor: 'text-cyan border-cyan/40 bg-cyan/5',
   },
   {
     title: 'GearShop E-commerce',
-    description: 'High-performance e-commerce platform built for tech enthusiasts. Implements a complete shopping lifecycle, secure order management, and multi-factor authentication for user security.',
-    tech: ['PHP', 'MySQL', 'Bootstrap 5', 'PHPMailer', 'Docker'],
+    description:
+      'High-performance e-commerce platform for tech enthusiasts. Implements a complete shopping lifecycle, OTP-based authentication, secure order management, and a full-featured admin panel.',
+    tech: ['PHP', 'MySQL', 'Bootstrap 5', 'Docker'],
     link: 'https://github.com/hoandevv/Sales-Management-Project',
-    featured: true
+    highlights: [
+      'PHP MVC backend with clean separation of concerns',
+      'Shopping cart, checkout, and order lifecycle management',
+      'OTP verification via email with PHPMailer',
+      'Admin dashboard for product, order, and user management',
+    ],
+    badge: 'E-commerce',
+    badgeColor: 'text-purple-400 border-purple-400/40 bg-purple-400/5',
   },
 ];
 
@@ -29,58 +60,82 @@ const Projects = () => {
         <div className="h-px bg-navy-lighter flex-1 ml-6" />
       </div>
 
-      <div className="grid grid-cols-1 gap-12 px-4">
+      <div className="grid grid-cols-1 gap-10 px-4">
         {projects.map((project, index) => (
-          <div 
-            key={index}
-            className="relative group"
-          >
-            {/* Background Glow Effect */}
-            <div className="absolute -inset-2 bg-gradient-to-r from-cyan/20 to-purple-500/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
-            
-            <div className="relative bg-navy-light p-8 md:p-10 rounded-lg border border-white/5 group-hover:border-cyan/30 transition-all duration-300 flex flex-col shadow-2xl">
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <p className="font-mono text-cyan text-xs mb-2 tracking-widest uppercase">Featured Project</p>
-                  <h3 className="text-2xl md:text-3xl font-bold text-slate-lighter group-hover:text-cyan transition-colors">
-                    {project.title}
-                  </h3>
-                </div>
-                <div className="flex gap-5 text-slate-lighter pt-2">
-                  <a 
-                    href={project.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="hover:text-cyan transition-all transform hover:-translate-y-1"
-                    title="View Source"
-                  >
-                    <FaGithub size={24} />
-                  </a>
-                  <a 
-                    href={project.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="hover:text-cyan transition-all transform hover:-translate-y-1"
-                    title="External Link"
-                  >
-                    <FaExternalLinkAlt size={22} />
-                  </a>
-                </div>
-              </div>
+          <div key={index} className="relative group">
+            {/* Ambient glow */}
+            <div className="absolute -inset-px bg-gradient-to-r from-cyan/20 via-purple-500/10 to-cyan/20 rounded-xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-              <div className="mb-8">
-                <p className="text-slate-light text-base md:text-lg leading-relaxed max-w-3xl">
+            <div className="relative bg-navy-light rounded-xl border border-navy-lighter group-hover:border-cyan/20 transition-all duration-300 overflow-hidden">
+              {/* Top accent line */}
+              <div className="h-px bg-gradient-to-r from-transparent via-cyan/40 to-transparent" />
+
+              <div className="p-8 md:p-10">
+                {/* Header */}
+                <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <p className="font-mono text-xs text-slate tracking-widest uppercase">Featured Project</p>
+                    <span className={`font-mono text-xs px-2.5 py-1 rounded-full border ${project.badgeColor}`}>
+                      {project.badge}
+                    </span>
+                  </div>
+                  <div className="flex gap-4 text-slate">
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-cyan transition-all duration-200 hover:-translate-y-0.5"
+                      title="View Source on GitHub"
+                    >
+                      <FaGithub size={22} />
+                    </a>
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-cyan transition-all duration-200 hover:-translate-y-0.5"
+                      title="External Link"
+                    >
+                      <FaExternalLinkAlt size={19} />
+                    </a>
+                  </div>
+                </div>
+
+                <h3 className="text-2xl md:text-3xl font-bold text-slate-lighter mb-4 group-hover:text-cyan transition-colors duration-300">
+                  {project.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-slate-light text-base leading-relaxed mb-6 max-w-3xl">
                   {project.description}
                 </p>
-              </div>
 
-              <ul className="flex flex-wrap gap-x-6 gap-y-2 mt-auto font-mono text-sm text-cyan/70">
-                {project.tech.map((tech) => (
-                  <li key={tech} className="relative">
-                    {tech}
-                  </li>
-                ))}
-              </ul>
+                {/* Highlights */}
+                <ul className="grid sm:grid-cols-2 gap-2 mb-8">
+                  {project.highlights.map((h, i) => (
+                    <li key={i} className="flex items-start gap-2 text-slate text-sm">
+                      <span className="text-cyan mt-1 shrink-0">▹</span>
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Tech stack */}
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-navy-lighter">
+                  {project.tech.map((tech) => {
+                    const Icon = techIcons[tech];
+                    return (
+                      <span
+                        key={tech}
+                        className="flex items-center gap-1.5 font-mono text-xs text-slate-light px-3 py-1.5 rounded-full bg-navy border border-navy-lighter hover:border-cyan/30 hover:text-cyan transition-all duration-200"
+                      >
+                        {Icon && <Icon size={12} />}
+                        {tech}
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </div>
         ))}

@@ -3,6 +3,7 @@ import About from './components/About';
 import Education from './components/Education';
 import TechStack from './components/TechStack';
 import Projects from './components/Projects';
+import GitHubStats from './components/GitHubStats';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Spotlight from './components/UI/Spotlight';
@@ -32,6 +33,10 @@ function App() {
 
         <Reveal width="100%">
           <Projects />
+        </Reveal>
+
+        <Reveal width="100%">
+          <GitHubStats />
         </Reveal>
 
         <Footer />
